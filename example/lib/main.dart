@@ -49,9 +49,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _download() {
+  void _download() async {
     final stream = Stream.fromIterable('Hello World!'.codeUnits);
-    download(stream, 'hello.txt');
+    var bytes = await stream.toList();
+    download(bytes, 'hello.txt');
   }
 
   @override
