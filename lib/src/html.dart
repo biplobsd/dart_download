@@ -10,7 +10,7 @@ import 'dart:html';
 /// - On desktop it saves the file in absolute or relative path.
 /// - On mobile it saves the file in absolute or relative path, but we should ask/ensure if the app has the required permissions.
 /// - On the web, not supported in IE or Edge (prior version 18), or in Safari (prior version 10.1).
-void download(List<int> bytes, String filename) {
+Future<void> download(List<int> bytes, String filename) async{
   filename = filename.replaceAll('/', '_').replaceAll('\\', '_');
   // Encode our file in base64
   final base64 = base64Encode(bytes);
@@ -23,6 +23,7 @@ void download(List<int> bytes, String filename) {
 
   // trigger download
   document.body?.append(anchor);
+  await Future.delayed(const Duration(milliseconds: 500));
   anchor.click();
   anchor.remove();
 }
