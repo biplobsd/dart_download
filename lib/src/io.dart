@@ -7,7 +7,7 @@ import 'dart:io';
 /// - On desktop it saves the file in absolute or relative path.
 /// - On mobile it saves the file in absolute or relative path, but we should ask/ensure if the app has the required permissions.
 /// - On the web, not supported in IE or Edge (prior version 18), or in Safari (prior version 10.1).
-void download(List<int> bytes, String filename) {
+Future<void> download(List<int> bytes, String filename) async {
   final file = File(filename);
-  file.writeAsBytes(bytes);
+  await file.writeAsBytes(bytes);
 }
